@@ -8,7 +8,6 @@
 #import "HomeViewController.h"
 #import "Parse/Parse.h"
 #import "LoginViewController.h"
-#import "AppDelegate.h"
 #import "SceneDelegate.h"
 
 @interface HomeViewController ()
