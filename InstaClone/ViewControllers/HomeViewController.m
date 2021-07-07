@@ -9,8 +9,13 @@
 #import "Parse/Parse.h"
 #import "LoginViewController.h"
 #import "SceneDelegate.h"
+#import "PostCell.h"
+#import "Post.h"
 
-@interface HomeViewController ()
+@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSArray *posts;
 
 @end
 
@@ -18,6 +23,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    [self getPosts];
     // Do any additional setup after loading the view.
 }
 
@@ -30,6 +40,39 @@
         sceneDelegate.window.rootViewController = loginViewController;
     }];
 }
+
+//table view methods
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.posts.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    PostCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
+    
+    Post *post = self.posts[indexPath.row];
+    cell.post = post;
+    
+    return cell;
+}
+
+- (void)getPosts {
+    // construct query
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    query.limit = 20;
+    [query includeKey:@"author"];
+    [query orderByDescending:@"createdAt"];
+
+    // fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            self.posts = posts;
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
+
 
 /*
 #pragma mark - Navigation

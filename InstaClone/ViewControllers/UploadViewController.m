@@ -58,9 +58,8 @@
 }
 
 - (IBAction)shareTap:(id)sender {
-    Post *post = [[Post alloc] init];
-    UIImage *img = self.postImage.image;
-    //UIImage *img = [self resizeImage:self.postImage.image withSize:10];
+    //UIImage *img = self.postImage.image;
+    UIImage *img = [self resizeImage:self.postImage.image withSize:CGSizeMake(300, 300)];
     [Post postUserImage:img withCaption:self.captionText.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             NSLog(@"Successfully shared image!");
