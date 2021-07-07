@@ -2,7 +2,7 @@
 
 **InstaClone** is a photo sharing app using Parse as its backend.
 
-Time spent: **X** hours spent in total
+Time spent: **8** hours spent in total
 
 ## User Stories
 
@@ -14,7 +14,7 @@ The following **required** functionality is completed:
 - [x] User can take a photo, add a caption, and post it to "Instagram"
 - [x] User can view the last 20 posts submitted to "Instagram"
 - [x] User can pull to refresh the last 20 posts submitted to "Instagram"
-- [ ] User can tap a post to view post details, including timestamp and caption.
+- [x] User can tap a post to view post details, including timestamp and caption.
 
 The following **optional** features are implemented:
 
@@ -39,14 +39,14 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. the details view and home timeline table cell share a lot of the same code when setting them up, does anyone else have any good tips on how to reuse the code?
+2. how can I create a more aesthetic UI by programmatically setting the height of a PFImage according to its width?
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://media.giphy.com/media/lNehGuYOsbAR6AHLSi/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [Kap](https://getkap.co/).
 
@@ -55,11 +55,14 @@ GIF created with [Kap](https://getkap.co/).
 List an 3rd party libraries, icons, graphics, or other assets you used in your app.
 
 - [AFNetworking](https://github.com/AFNetworking/AFNetworking) - networking task library
-
+- [DateTools](https://github.com/MatthewYork/DateTools) - date tool library
+- Parse
 
 ## Notes
 
 Describe any challenges encountered while building the app.
+
+I didn't realize "author" was the key needed to retrieve a poster's data because the Parse online database also had a "user" section. This made my results null but changing the key fixed it.
 
 ## License
 
