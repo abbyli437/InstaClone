@@ -8,6 +8,7 @@ target 'InstaClone' do
   # Pods for InstaClone
   pod 'Parse'
   pod 'Parse/UI' 
+  pod 'DateTools' 
 
   target 'InstaCloneTests' do
     inherit! :search_paths

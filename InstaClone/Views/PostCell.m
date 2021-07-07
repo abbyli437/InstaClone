@@ -24,9 +24,9 @@
 - (void)setPost:(Post *)post {
     _post = post;
     
-    PFUser *user = post[@"author"];
+    PFUser *user = post.author;
     if (user != nil) {
-        self.authorLabel.text = user[@"username"];
+        self.authorLabel.text = user.username;
     }
     else {
         self.authorLabel.text = @"🤖";

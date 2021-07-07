@@ -23,6 +23,7 @@
 		887749F52694FE22002A854A /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 887749F42694FE22002A854A /* UploadViewController.m */; };
 		887749FC269502E8002A854A /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 887749FB269502E8002A854A /* Post.m */; };
 		88774A032695165E002A854A /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88774A022695165E002A854A /* PostCell.m */; };
+		88774A06269648B7002A854A /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88774A05269648B7002A854A /* DetailsViewController.m */; };
 		9D15336A74D60996E8C7E88C /* Pods_InstaClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4161F2D7CE8F38F150C195A0 /* Pods_InstaClone.framework */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,8 @@
 		887749FB269502E8002A854A /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		88774A012695165E002A854A /* PostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
 		88774A022695165E002A854A /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
+		88774A04269648B7002A854A /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
+		88774A05269648B7002A854A /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		9197B95A5C6F65F8FB83DD82 /* Pods-InstaCloneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaCloneTests.debug.xcconfig"; path = "Target Support Files/Pods-InstaCloneTests/Pods-InstaCloneTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9B17842D611066EA11A4A5EE /* Pods-InstaCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaCloneTests.release.xcconfig"; path = "Target Support Files/Pods-InstaCloneTests/Pods-InstaCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 		AB6B6831B83715BFF8F18C7F /* Pods_InstaCloneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaCloneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,6 +199,8 @@
 				887749F12694F5E8002A854A /* HomeViewController.m */,
 				887749F32694FE22002A854A /* UploadViewController.h */,
 				887749F42694FE22002A854A /* UploadViewController.m */,
+				88774A04269648B7002A854A /* DetailsViewController.h */,
+				88774A05269648B7002A854A /* DetailsViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -466,6 +471,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				887749F52694FE22002A854A /* UploadViewController.m in Sources */,
+				88774A06269648B7002A854A /* DetailsViewController.m in Sources */,
 				887749BB2694E88C002A854A /* ViewController.m in Sources */,
 				887749B52694E88C002A854A /* AppDelegate.m in Sources */,
 				887749C62694E88D002A854A /* main.m in Sources */,
