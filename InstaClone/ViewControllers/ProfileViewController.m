@@ -15,7 +15,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *pfpImage;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-
 @property (strong, nonatomic) NSArray *posts;
 
 @end

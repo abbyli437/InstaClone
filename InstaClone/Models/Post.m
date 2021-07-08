@@ -35,7 +35,6 @@
 }
 
 + (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {
- 
     // check if image is not nil
     if (!image) {
         return nil;
