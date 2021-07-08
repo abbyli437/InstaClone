@@ -7,6 +7,7 @@
 
 #import "PostCell.h"
 #import "Post.h"
+#import "DateTools/DateTools.h"
 
 @implementation PostCell
 
@@ -40,6 +41,15 @@
     //sets up post image
     self.postImage.file = post.image;
     [self.postImage loadInBackground];
+    
+    //sets up timestamp
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    // Configure the input format to parse the date string
+    formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
+    // Convert String to Date
+    NSDate *date = self.post.createdAt;
+    // Convert Date to String
+    self.timestampLabel.text = [[date shortTimeAgoSinceNow] stringByAppendingString:@" ago"];
 }
 
 @end
