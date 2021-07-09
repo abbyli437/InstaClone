@@ -47,7 +47,6 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
     // Get the image captured by the UIImagePickerController
-    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
 
     // Do something with the images (based on your use case)
@@ -55,6 +54,20 @@
     
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
+    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    
+    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
+    resizeImageView.image = image;
+    
+    UIGraphicsBeginImageContext(size);
+    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 
 - (IBAction)cancelTap:(id)sender {
@@ -92,23 +105,8 @@
     
     SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    HomeViewController *homeViewController = [storyboard instantiateViewControllerWithIdentifier:@"HomeNavController"];
+    HomeViewController *homeViewController = [storyboard instantiateViewControllerWithIdentifier:@"TabNavController"];
     sceneDelegate.window.rootViewController = homeViewController;
-}
-
-
-- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
-    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-    
-    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
-    resizeImageView.image = image;
-    
-    UIGraphicsBeginImageContext(size);
-    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return newImage;
 }
 
 /*
