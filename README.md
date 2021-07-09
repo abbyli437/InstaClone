@@ -23,7 +23,7 @@ The following **optional** features are implemented:
 - [x] Show the username and creation time for each post
 - [x] User can use a Tab Bar to switch between a Home Feed tab (all posts) and a Profile tab (only posts published by the current user)
 - User Profiles:
-  - [ ] Allow the logged in user to add a profile photo
+  - [x] Allow the logged in user to add a profile photo
   - [ ] Display the profile photo with each post
   - [ ] Tapping on a post's username or profile photo goes to that user's profile page
 - [ ] After the user submits a new post, show a progress HUD while the post is being uploaded to Parse
@@ -63,6 +63,8 @@ List an 3rd party libraries, icons, graphics, or other assets you used in your a
 Describe any challenges encountered while building the app.
 
 I didn't realize "author" was the key needed to retrieve a poster's data because the Parse online database also had a "user" section. This made my results null but changing the key fixed it.
+
+I was trying to refactor my code so that my details view and table view cell shared a the same code to load seeing as they were identical. I tried using a .xib file and making the details view controller a table view with a single PostCell but both kept on giving me a nib not found error. I spent around 3 hours on this and my podmates and I couldn't figure out why. 
 
 ## License
 

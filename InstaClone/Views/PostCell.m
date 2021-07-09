@@ -7,6 +7,7 @@
 
 #import "PostCell.h"
 #import "Post.h"
+#import "ImageUtil.h"
 #import "DateTools/DateTools.h"
 
 @implementation PostCell
@@ -41,6 +42,18 @@
     //sets up post image
     self.postImage.file = post.image;
     [self.postImage loadInBackground];
+    
+    //sets up pfp
+    if (post.author[@"pfp"] != nil) {
+        self.pfpImage.file = post.author[@"pfp"];
+        [self.pfpImage loadInBackground];
+    }
+    else {
+        [self.pfpImage setImage:[UIImage imageNamed:@"profile_tab"]];
+    }
+    self.pfpImage.layer.cornerRadius  = self.pfpImage.frame.size.width/2;
+    self.pfpImage.clipsToBounds = YES;
+    
     
     //sets up timestamp
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

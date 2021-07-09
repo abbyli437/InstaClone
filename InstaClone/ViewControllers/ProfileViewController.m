@@ -48,24 +48,26 @@
     self.collectionView.collectionViewLayout = layout;
     
     [self getPosts];
-    [self getPfp];
+    [self getPFP];
     
     //sets up image picker
     self.imagePickerVC = [ImageUtil makeImagePicker];
     self.imagePickerVC.delegate = self;
 }
 
-- (void)getPfp {
+- (void)getPFP {
     PFQuery *query = [PFQuery queryWithClassName:@"_User"];
-    PFUser *user = [PFUser currentUser];
-
+    
     // Retrieve the object by id
-   [query getObjectInBackgroundWithId:user.objectId
+    [query getObjectInBackgroundWithId:[PFUser currentUser].objectId
                                block:^(PFObject *user, NSError *error) {
-       self.pfpImage.file = user[@"pfp"];
-       [self.pfpImage loadInBackground];
-       
-       NSLog(@"successfully retrieved pfp");
+        self.pfpImage.file = user[@"pfp"];
+        [self.pfpImage loadInBackground];
+        
+        self.pfpImage.layer.cornerRadius  = self.pfpImage.frame.size.width/2;
+        self.pfpImage.clipsToBounds = YES;
+        
+        NSLog(@"successfully retrieved pfp");
    }];
 }
 
