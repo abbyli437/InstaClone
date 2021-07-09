@@ -24,7 +24,7 @@ The following **optional** features are implemented:
 - [x] User can use a Tab Bar to switch between a Home Feed tab (all posts) and a Profile tab (only posts published by the current user)
 - User Profiles:
   - [x] Allow the logged in user to add a profile photo
-  - [ ] Display the profile photo with each post
+  - [x] Display the profile photo with each post
   - [ ] Tapping on a post's username or profile photo goes to that user's profile page
 - [ ] After the user submits a new post, show a progress HUD while the post is being uploaded to Parse
 - [ ] User can comment on a post and see all comments for each post in the post details screen.
@@ -46,7 +46,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://media.giphy.com/media/lNehGuYOsbAR6AHLSi/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://media.giphy.com/media/JRIq4LChpmQCUq5VVd/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [Kap](https://getkap.co/).
 
@@ -59,6 +59,8 @@ List an 3rd party libraries, icons, graphics, or other assets you used in your a
 - Parse
 
 ## Notes
+
+I wish I had time to display alerts when log ins or sign ups failed
 
 Describe any challenges encountered while building the app.
 
