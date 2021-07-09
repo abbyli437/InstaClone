@@ -368,7 +368,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_tab" translatesAutoresizingMaskIntoConstraints="NO" id="szJ-6e-pKw">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_tab" translatesAutoresizingMaskIntoConstraints="NO" id="szJ-6e-pKw" customClass="PFImageView">
                                 <rect key="frame" x="157.66666666666666" y="115" width="75" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="75" id="KGZ-me-c3c"/>
@@ -442,7 +442,7 @@
                     <connections>
                         <outlet property="authorLabel" destination="Psv-wO-ZLD" id="Siv-tl-mvh"/>
                         <outlet property="collectionView" destination="HEK-q1-sO8" id="xxZ-jR-dy9"/>
-                        <outlet property="pfpImage" destination="szJ-6e-pKw" id="1rI-AN-QOY"/>
+                        <outlet property="pfpImage" destination="szJ-6e-pKw" id="V66-M8-eZM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qba-4E-Mv9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

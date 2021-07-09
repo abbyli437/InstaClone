@@ -8,9 +8,9 @@
 #import "ImageUtil.h"
 #import <UIKit/UIKit.h>
 
-@implementation ImageUtil
+@implementation ImageUtil 
 
-- (UIImagePickerController *)makeImagePicker {
++ (UIImagePickerController *)makeImagePicker {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.allowsEditing = YES;
 
@@ -26,7 +26,7 @@
     return imagePickerVC;
 }
 
-- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
++ (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
     UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     
     resizeImageView.contentMode = UIViewContentModeScaleAspectFill;

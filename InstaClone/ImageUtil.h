@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ImageUtil : NSObject
+@interface ImageUtil : NSObject <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 + (UIImagePickerController *)makeImagePicker;
 

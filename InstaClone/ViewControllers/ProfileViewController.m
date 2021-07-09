@@ -9,10 +9,12 @@
 #import "Post.h"
 #import "ProfilePostCell.h"
 #import "Parse/Parse.h"
+#import "ImageUtil.h"
+@import Parse;
 
 @interface ProfileViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIImageView *pfpImage;
+@property (weak, nonatomic) IBOutlet PFImageView *pfpImage;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) NSArray *posts;
@@ -46,27 +48,31 @@
     self.collectionView.collectionViewLayout = layout;
     
     [self getPosts];
+    [self getPfp];
     
     //sets up image picker
-    self.imagePickerVC = [UIImagePickerController new];
-    self.imagePickerVC.delegate = self; //can't reuse this
-    self.imagePickerVC.allowsEditing = YES;
+    self.imagePickerVC = [ImageUtil makeImagePicker];
+    self.imagePickerVC.delegate = self;
+}
 
-    // The Xcode simulatr does not support taking pictures, so let's first check that the camera is indeed supported on the device before trying to present it.
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
-    }
-    else {
-        NSLog(@"Camera 🚫 available so we will use photo library instead");
-        self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    }
+- (void)getPfp {
+    PFQuery *query = [PFQuery queryWithClassName:@"_User"];
+    PFUser *user = [PFUser currentUser];
+
+    // Retrieve the object by id
+   [query getObjectInBackgroundWithId:user.objectId
+                               block:^(PFObject *user, NSError *error) {
+       self.pfpImage.file = user[@"pfp"];
+       [self.pfpImage loadInBackground];
+       
+       NSLog(@"successfully retrieved pfp");
+   }];
 }
 
 - (void)getPosts {
     // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     query.limit = 20;
-    [query includeKey:@"author"]; //might be unnecessary
     [query orderByDescending:@"createdAt"];
     
     PFUser *user = [PFUser currentUser];
@@ -87,16 +93,42 @@
     [self presentViewController:self.imagePickerVC animated:YES completion:nil];
 }
 
+- (void)updatePfp {
+    PFQuery *query = [PFQuery queryWithClassName:@"_User"];
+    PFUser *user = [PFUser currentUser];
+    
+    //resize object and convert object to PFFile
+    UIImage *img = [ImageUtil resizeImage:self.pfpImage.image withSize:CGSizeMake(300, 300)];
+    NSData *imageData = UIImagePNGRepresentation(img);
+    // get image data and check if that is not nil
+    if (!imageData) {
+        return;
+    }
+    
+    PFFileObject *pfpObject = [PFFileObject fileObjectWithName:@"image.png" data:imageData];
+
+     // Retrieve the object by id
+    [query getObjectInBackgroundWithId:user.objectId
+                                block:^(PFObject *user, NSError *error) {
+         [user setObject:pfpObject forKey:@"pfp"];
+        [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        NSLog(@"successfully updated pfp");
+        }];
+    }];
+}
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
    
-   // Get the image captured by the UIImagePickerController
-   UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+    // Get the image captured by the UIImagePickerController
+    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
 
-   // Do something with the images (based on your use case)
-   self.pfpImage.image = editedImage;
+    // Do something with the images (based on your use case)
+    self.pfpImage.image = editedImage;
+    [self updatePfp];
+    
    
-   // Dismiss UIImagePickerController to go back to your original view controller
-   [self dismissViewControllerAnimated:YES completion:nil];
+    // Dismiss UIImagePickerController to go back to your original view controller
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
