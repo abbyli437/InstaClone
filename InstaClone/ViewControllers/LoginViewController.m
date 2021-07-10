@@ -27,24 +27,43 @@
 }
 
 - (IBAction)signUpTap:(id)sender {
-    // initialize a user object
-       PFUser *newUser = [PFUser user];
-       
-       // set user properties
-       newUser.username = self.usernameField.text;
-       newUser.password = self.passwordField.text;
-       
-       // call sign up function on the object
-       [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
-           if (error != nil) {
-               NSLog(@"Error: %@", error.localizedDescription);
-           } else {
-               NSLog(@"User registered successfully");
-               
-               // manually segue to logged in view
-               [self performSegueWithIdentifier:@"loginSegue" sender:nil];
-           }
-       }];
+    //set up alert
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Invalid Sign Up"
+                                                                               message:@"Username or Password field is blank"
+                                                                        preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * _Nonnull action) {
+                                                             // handle response here.
+                                                     }];
+    // add the OK action to the alert controller
+    [alert addAction:okAction];
+    
+    if ([self.usernameField.text isEqual:@""] || [self.passwordField.text isEqual:@""]) {
+        [self presentViewController:alert animated:YES completion:^{
+        }];
+    }
+    else {
+        // initialize a user object
+        PFUser *newUser = [PFUser user];
+           
+        // set user properties
+        newUser.username = self.usernameField.text;
+        newUser.password = self.passwordField.text;
+           
+        // call sign up function on the object
+        [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+            if (error != nil) {
+                NSLog(@"Error: %@", error.localizedDescription);
+            }
+            else {
+                NSLog(@"User registered successfully");
+                   
+                // manually segue to logged in view
+                [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+            }
+        }];
+    }
 }
 
 - (IBAction)loginTap:(id)sender {
@@ -54,7 +73,20 @@
         [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
             if (error != nil) {
                 NSLog(@"User log in failed: %@", error.localizedDescription);
-            } else {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Invalid Login"
+                                                                                           message:@"Invalid username or incorrect password"
+                                                                                    preferredStyle:(UIAlertControllerStyleAlert)];
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                   style:UIAlertActionStyleDefault
+                                                                 handler:^(UIAlertAction * _Nonnull action) {
+                                                                         // handle response here.
+                                                                 }];
+                // add the OK action to the alert controller
+                [alert addAction:okAction];
+                [self presentViewController:alert animated:YES completion:^{
+                }];
+            }
+            else {
                 NSLog(@"User logged in successfully");
                 
                 // display view controller that needs to shown after successful login
